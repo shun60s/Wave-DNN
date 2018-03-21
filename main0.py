@@ -30,7 +30,7 @@ if __name__ == '__main__':
 	fbank0= GetFBANK_D_A()
 	
 	# load 16KHz sampling Mono Wave data and convert to mel-filter bank(log)
-	# Specify some wav file
+	# Specify some 16KHz sampling wav file
 	fbankda=fbank0.get_fbank_d_a('trial_1.wav', fshow=True)
 	
 	# load mean and variance

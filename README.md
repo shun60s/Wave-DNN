@@ -14,10 +14,10 @@ model/dnn以下を展開する。
 
 ### 2.各プログラムの説明  
   
-- get_fbank.py  wavファイルを読み込んで特徴量FBANK_D_A_Zを計算するクラス。
+- get_fbank.py  16KHzサンプリングのwavファイルを読み込んで特徴量FBANK_D_A_Zを計算するクラス。
 - cmvn_class.py  平均値・分散の正規化をするクラス。
 - dnn_class.py  DNNを計算するクラス。
-- main0.py 1つのwavファイルを読み込んで dnnを計算するまでのmainプログラムのサンプル。
+- main0.py 16KHzサンプリングのwavファイルを読み込んで dnnを計算するまでのmainプログラムのサンプル。
 - bin/common/dnnclient.py dnn計算の入出力データをnpyファイルで書き出す変更をしたもの。
 
 
