@@ -16,14 +16,17 @@ model/dnn以下を展開する。
   
 - get_fbank.py  16KHzサンプリングのwavファイルを読み込んで特徴量FBANK_D_A_Zを計算するクラス。
 - cmvn_class.py  平均値・分散の正規化をするクラス。
-- dnn_class.py  DNNを計算するクラス。
-- main0.py 16KHzサンプリングのwavファイルを読み込んで dnnを計算するまでのmainプログラムのサンプル。
+- dnn_class.py  numpyでDNNを計算するクラス。
+- chainer_dnn_class.py ディープラーニングのフレームワークのchainerでDNNを計算するクラス。学習は未対応。
+- main0.py 16KHzサンプリングのwavファイルを読み込んで numpyでDNNを計算するまでのmainプログラムのサンプル。
+- mainc.py 16KHzサンプリングのwavファイルを読み込んで chainerでDNNを計算するまでのmainプログラムのサンプル。
 - bin/common/dnnclient.py dnn計算の入出力データをnpyファイルで書き出す変更をしたもの。
 
 
 
 ## 注意  
-DNNの計算出力はHMMの隠れ状態の確率なので　そのままの形では認識に応用はできない。 
+DNNの計算出力はHMMの隠れ状態の確率なので、そのままでは認識に使えない。   
+計算出力は状態の優先度で割ってLOG10した値になっている。  
   
 > HMMは実質3状態のLR型で，4,874個の状態からなる状態共有モデルである． 
 > 状態確率がDNNによって与えられる． 
