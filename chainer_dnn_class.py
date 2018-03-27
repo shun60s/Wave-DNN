@@ -59,7 +59,7 @@ class Class_chainer_DNN(Chain):
 		# discriminator
 		tmp = F.softmax(self.l8(x7))
 		
-		# apply state priority
+		# apply state prior probability and log10
 		if self.state_prior is not None:
 			tmp /= self.state_prior
 			tmp= F.log10(tmp)
