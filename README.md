@@ -32,8 +32,10 @@ DNNの計算出力はHMMの隠れ状態の確率なので、そのままでは認識に使えない。
 > 状態確率がDNNによって与えられる． 
   
 Julius(C言語float)とpythonの数値計算の精度が同じではないので、計算結果は完全には一致しない。 
-(およそ1.0E-5オーダー程度の差が出るようだ。) 
-
+(およそ1.0E-5オーダー程度の差が出るようだ。)   
+  
+DNN-HMMの対数尤度の計算については[Wave-DNN-likelihood](https://github.com/shun60s/Wave-DNN-likelihood) を参照してください。   
+  
 ## ライセンス  
 以下のライセンス文を参照のこと。   
 LICENSE-Julius Dictation Kit.txt  
