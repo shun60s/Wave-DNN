@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>音声信号のDNN</title>
+<meta property="og:title" content="音声信号のDNN" />
+<meta property="og:locale" content="ja_JP" />
+<meta name="description" content="音声信号のDNN" />
+<meta property="og:description" content="音声信号のDNN" />
+<link rel="canonical" href="https://shun60s.github.io/Wave-DNN/" />
+<meta property="og:url" content="https://shun60s.github.io/Wave-DNN/" />
+<meta property="og:site_name" content="Wave-DNN" />
+
+
+    <link href="style.css" rel="stylesheet">
+    <link rel="alternate" hreflang="ja" href="https://shun60s.github.io/Wave-DNN/" />
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+
+      <h1 id="hmm">Wave-DNN</h1>
+
+<h2 id="概要">概要</h2>
+
+<p>画像認識ではVGG16など事前学習したものを利用できるが、音声認識用途では少ない。 
+そこで、音声認識エンジンJuliusのディクテーションキットに含まれるDNNを利用するための 
+特徴量FBANK_D_A_Zを計算するpythonを作ってみた。</p>
+
+<p><a href="https://github.com/shun60s/Wave-DNN">github repository</a></p>
+
+<h2 id="使い方">使い方</h2>
+<h3 id="1DNNのmodelの準備">1.DNNのmodelの準備</h3>
+
+<p>Juliusのディクテーションキットversion 4.4をダウンロードする。 <a href="http://julius.osdn.jp/index.php?q=dictation-kit.html">http://julius.osdn.jp/index.php?q=dictation-kit.html</a> )<br />
+model/dnn以下を展開する。</p>
+
+
+
+<h3 id="2各プログラムの説明 ">2.各プログラムの説明 </h3>
+
+<ul>
+  <li>get_fbank.py  16KHzサンプリングのwavファイルを読み込んで特徴量FBANK_D_A_Zを計算するクラス。</li>
+  <li>cmvn_class.py  平均値・分散の正規化をするクラス。</li>
+  <li>dnn_class.py  numpyでDNNを計算するクラス。</li>
+  <li>chainer_dnn_class.py ディープラーニングのフレームワークのchainerでDNNを計算するクラス。学習は未対応。</li>
+  <li>main0.py 16KHzサンプリングのwavファイルを読み込んで numpyでDNNを計算するまでのmainプログラムのサンプル。</li>
+  <li>mainc.py 16KHzサンプリングのwavファイルを読み込んで chainerでDNNを計算するまでのmainプログラムのサンプル。</li>
+  <li>bin/common/dnnclient.py dnn計算の入出力データをnpyファイルで書き出す変更をしたもの。</li>
+</ul>
+
+
+<h3 id="注意 ">注意 </h3>
+<p>DNNの計算出力はHMMの隠れ状態の確率なので、そのままでは認識に使えない。 <br />  
+計算出力は状態の事前確率で除算してLOG10をとった値になっている。 <br /> </p>
+
+<p>
+> HMMは実質3状態のLR型で，4,874個の状態からなる状態共有モデルである． <br />
+> 状態確率がDNNによって与えられる． <br />
+</p>
+<p>
+Julius(C言語float)とpythonの数値計算の精度が同じではないので、計算結果は完全には一致しない。  <br />
+(およそ1.0E-5オーダー程度の差が出るようだ。)   
+</p>
+
+<p>DNN-HMMの対数尤度の計算については<a href="https://github.com/shun60s/Wave-DNN-likelihood"> Wave-DNN-likelihood</a> を参照してください。
+</p>
+
+
+<h2 id="ライセンス">ライセンス</h2>
+<p>以下のライセンス文を参照のこと。</p> <br />
+
+<a href="../LICENSE-Julius Dictation Kit.txt">LICENSE-Julius Dictation Kit.txt</a>   <br />
+<a href="../LICENSE-Julius.txt">LICENSE-Julius.txt</a> <br />
+<a href="../LICENSE-PyHTK">LICENSE-PyHTK</a> <br />
+<br />
+<br />
+<br />
+
+      
+    </div>
+  </body>
+</html>
